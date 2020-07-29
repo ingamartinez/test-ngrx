@@ -34,7 +34,6 @@ export class FieldEffects {
   );
 
   modifySelect(result, fields, payload): FieldConfig[] {
-    console.log(result, fields, payload);
     const newFields = JSON.parse(JSON.stringify(fields)) as FieldConfig[];
 
     payload.payload.field.dependency.forEach( (dependency: Dependency) => {
@@ -43,7 +42,6 @@ export class FieldEffects {
           return eachField.name === dependency.id;
         });
         if (findField) {
-          console.log(findField);
           findField.options = result;
         }
       }
