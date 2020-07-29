@@ -21,6 +21,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatNativeDateModule} from '@angular/material/core';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import {environment} from '../environments/environment';
+import {fieldReducer} from './store/field.reducer';
+import {EffectsModule} from '@ngrx/effects';
+import {FieldEffects} from './store/field.effects';
 
 @NgModule({
   declarations: [
@@ -48,7 +54,13 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    StoreModule.forRoot({fields: fieldReducer}),
+    EffectsModule.forRoot([FieldEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

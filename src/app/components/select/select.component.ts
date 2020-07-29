@@ -3,6 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { FieldConfig, TypeDependency } from '../../field.interface';
 import { Observable, of } from 'rxjs';
 import { MatSelectChange } from '@angular/material/select';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.state';
+import * as FieldActions from './../../store/field.actions';
+
 @Component({
   selector: 'app-select',
   template: `
@@ -23,14 +27,18 @@ import { MatSelectChange } from '@angular/material/select';
 export class SelectComponent implements OnInit {
   field: FieldConfig;
   group: FormGroup;
-  @Output() selectValueChange: EventEmitter<any> = new EventEmitter<any>();
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
   ngOnInit(): void {}
 
   selectionChange($event: MatSelectChange): void {
     this.field.dependency.forEach((dependency, indice, array) => {
       if (dependency.type === TypeDependency.LoadService) {
-        this.selectValueChange.emit(this.servicioCambiar($event.value));
+        this.store.dispatch(
+          new FieldActions.ModifySelectField({
+            field: this.field,
+            value: $event.value
+          })
+        );
       }
     });
   }

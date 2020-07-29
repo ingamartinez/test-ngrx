@@ -29,13 +29,9 @@ const componentMapper = {
 @Directive({
   selector: '[dynamicField]'
 })
-export class DynamicFieldDirective implements OnInit, OnDestroy {
+export class DynamicFieldDirective implements OnInit {
   @Input() field: FieldConfig;
   @Input() group: FormGroup;
-  @Output() valueChange: EventEmitter<Observable<any>> = new EventEmitter<
-    Observable<any>
-  >();
-  valueChangeSub: Subscription;
 
   componentRef: any;
   constructor(
@@ -49,20 +45,6 @@ export class DynamicFieldDirective implements OnInit, OnDestroy {
     this.componentRef = this.container.createComponent(factory);
     this.componentRef.instance.field = this.field;
     this.componentRef.instance.group = this.group;
-    this.valueChangeSub = this.componentRef.instance.valueChange;
-
-    if (this.componentRef.instance.selectValueChange) {
-      this.valueChangeSub = this.componentRef.instance.selectValueChange.subscribe(
-        data => {
-          this.valueChange.emit(data);
-        }
-      );
-    }
   }
 
-  ngOnDestroy(): void {
-    if (this.valueChangeSub) {
-      this.valueChangeSub.unsubscribe();
-    }
-  }
 }
