@@ -15,7 +15,9 @@ import { FieldConfig } from '../../models/field.interface';
         [formControlName]="field.name"
         [placeholder]="field.label"
         [type]="field.inputType"
+        maxlength="{{field.maxLength}}"
       />
+     <span class="form-control-character-count" *ngIf="field.maxLength"> {{group.get(field.name).value?group.get(field.name).value.length:0}}/ {{field.maxLength}}</span>
       <ng-container
         *ngFor="let validation of field.validations"
         ngProjectAs="mat-error"
@@ -26,7 +28,7 @@ import { FieldConfig } from '../../models/field.interface';
       </ng-container>
     </mat-form-field>
   `,
-  styles: []
+  styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
   field: FieldConfig;

@@ -93,11 +93,12 @@ export class FieldService {
         label: 'Depto. / Int. / Piso / Edificio (Opcional)',
         inputType: 'text',
         name: 'line2',
+        maxLength: 10,
         validations: [
           {
             name: 'pattern',
             validator: Validators.pattern(
-              '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'
+              ''
             ),
             message: 'Invalid email'
           }
