@@ -1,6 +1,6 @@
 // 1 - Importaciones
 import * as FieldActions from './field.actions';
-import {FieldConfig, TypeDependency} from '../field.interface';
+import {FieldConfig, TypeDependency} from '../../field.interface';
 import {Validators} from '@angular/forms';
 import {ModifySelectField} from './field.actions';
 
@@ -17,11 +17,4 @@ export function fieldReducer(state: FieldConfig[] = initialState, action: FieldA
     default:
       return state;
   }
-}
-
-function modifyValue(state: FieldConfig[], action: ModifySelectField): FieldConfig[] {
-  const newState = JSON.parse(JSON.stringify(state));
-  newState[6].options = ['Cartagena', 'Barranquilla', 'Medellín'];
-  console.log(state[6], action);
-  return newState;
 }

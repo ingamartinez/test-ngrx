@@ -10,14 +10,13 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import {FieldConfig, TypeDependency} from '../../field.interface';
+import {FieldConfig, TypeDependency} from '../../../field.interface';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../app.state';
+import {AppState} from '../../../app.state';
 import * as FieldActions from '../../store/field.actions';
 
 @Component({
-  exportAs: 'dynamicForm',
   selector: 'dynamic-form',
   template: `
   <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)">

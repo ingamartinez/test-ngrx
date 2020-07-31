@@ -1,7 +1,7 @@
 // 1 - Importaciones
 import { Action } from '@ngrx/store';
-import {FieldConfig} from '../field.interface';
-import {SelectedField} from './models/store-fields.interface';
+import {FieldConfig} from '../../field.interface';
+import {SelectedField} from '../models/store-fields.interface';
 
 // 2 - Definición del tipo de acción
 export const MODIFY_SELECT_FIELD = 'Modify Select Field';
