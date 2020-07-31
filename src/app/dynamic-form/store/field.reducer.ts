@@ -1,6 +1,6 @@
 // 1 - Importaciones
 import * as FieldActions from './field.actions';
-import {FieldConfig, TypeDependency} from '../../field.interface';
+import {FieldConfig, TypeDependency} from '../models/field.interface';
 import {Validators} from '@angular/forms';
 import {ModifySelectField} from './field.actions';
 

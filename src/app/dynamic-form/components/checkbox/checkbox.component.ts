@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldConfig, TypeDependency } from '../../../field.interface';
+import { FieldConfig, TypeDependency } from '../../models/field.interface';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 @Component({
   selector: 'app-checkbox',

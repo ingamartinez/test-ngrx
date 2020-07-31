@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldConfig, TypeDependency } from '../../../field.interface';
+import { FieldConfig, TypeDependency } from '../../models/field.interface';
 import { Observable, of } from 'rxjs';
 import { MatSelectChange } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../app.state';
+import { AppState } from '../../store/app.state';
 import * as FieldActions from '../../store/field.actions';
 
 @Component({

@@ -10,10 +10,10 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import {FieldConfig, TypeDependency} from '../../../field.interface';
+import {FieldConfig, TypeDependency} from '../../models/field.interface';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../../app.state';
+import {AppState} from '../../store/app.state';
 import * as FieldActions from '../../store/field.actions';
 
 @Component({

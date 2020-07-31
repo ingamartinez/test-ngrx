@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Validators } from '@angular/forms';
-import { FieldConfig, TypeDependency } from '../../field.interface';
+import { FieldConfig, TypeDependency } from '../models/field.interface';
 
 @Injectable({ providedIn: 'root' })
 export class FieldService {

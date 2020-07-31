@@ -1,4 +1,4 @@
-import {FieldConfig} from '../../field.interface';
+import {FieldConfig} from './field.interface';
 
 export interface SelectedField {
   field: FieldConfig;
