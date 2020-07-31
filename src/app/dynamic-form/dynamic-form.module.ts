@@ -24,6 +24,8 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {componentMapper} from './componentsmap';
 import {ButtonSubmitComponent} from './components/button-submit/button-submit.component';
+import {ConfirmDialogComponent} from './components/confirm-dialog/confirm-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import {ButtonSubmitComponent} from './components/button-submit/button-submit.co
     RadiobuttonComponent,
     CheckboxComponent,
     DynamicFieldDirective,
-    DynamicFormComponent
+    DynamicFormComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +55,7 @@ import {ButtonSubmitComponent} from './components/button-submit/button-submit.co
     MatCheckboxModule,
     MatRadioModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   providers: [
     MatDatepickerModule,

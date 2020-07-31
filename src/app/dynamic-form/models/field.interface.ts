@@ -11,6 +11,8 @@ export interface FieldConfig {
   collections?: any;
   type: string;
   value?: any;
+  maxLength?: number;
+  minLength?: number;
   validations?: Validator[];
   dependency?: Dependency[];
 }
