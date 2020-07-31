@@ -15,7 +15,7 @@ export class FieldEffects {
   loadFields$ = createEffect(() =>
     this.actions$.pipe(
       ofType(FieldActions.GET_FIELDS),
-      mergeMap(() => this.fieldService.getFields()
+      mergeMap(() => this.fieldService.getFieldsPeru()
         .pipe(
           map(fields => ({ type: FieldActions.LOADED_FIELDS, payload: fields }))
         )
