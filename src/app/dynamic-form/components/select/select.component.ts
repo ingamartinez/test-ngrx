@@ -4,7 +4,7 @@ import { FieldConfig, TypeDependency } from '../../models/field.interface';
 import { Observable, of } from 'rxjs';
 import { MatSelectChange } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store/app.state';
+import { AppState } from '../../models/app.state';
 import * as FieldActions from '../../store/field.actions';
 
 @Component({

@@ -5,7 +5,7 @@ import {map, mergeMap, catchError, withLatestFrom, tap} from 'rxjs/operators';
 import {FieldService} from '../services/field.service';
 import * as FieldActions from './field.actions';
 import {Store} from '@ngrx/store';
-import {AppState} from './app.state';
+import {AppState} from '../models/app.state';
 import {Dependency, FieldConfig, TypeDependency} from '../models/field.interface';
 
 

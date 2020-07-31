@@ -4,7 +4,7 @@ import {FieldConfig, TypeDependency} from './dynamic-form/models/field.interface
 import {FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {AppState} from './dynamic-form/store/app.state';
+import {AppState} from './dynamic-form/models/app.state';
 import * as FieldActions from './dynamic-form/store/field.actions';
 
 @Component({

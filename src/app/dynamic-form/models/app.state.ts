@@ -1,4 +1,4 @@
-import {FieldConfig} from '../models/field.interface';
+import {FieldConfig} from './field.interface';
 
 export interface AppState {
   readonly fields: FieldConfig[];

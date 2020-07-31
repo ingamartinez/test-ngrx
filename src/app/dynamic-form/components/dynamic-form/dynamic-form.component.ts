@@ -13,7 +13,7 @@ import {
 import {FieldConfig, TypeDependency} from '../../models/field.interface';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/app.state';
+import {AppState} from '../../models/app.state';
 import * as FieldActions from '../../store/field.actions';
 
 @Component({
