@@ -227,6 +227,7 @@ export class FieldService {
         label: 'Depto. / Int. / Piso / Edificio (Opcional)',
         inputType: 'text',
         name: 'line2',
+        maxLength: 10,
         validations: [
           {
             name: 'pattern',
