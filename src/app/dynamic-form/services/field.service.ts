@@ -143,6 +143,38 @@ export class FieldService {
   getFieldsMexico(): Observable<FieldConfig[]> {
     return of([
       {
+        type: 'checkbox',
+        label: 'Solicitar Factura',
+        name: 'factura',
+        value: false,
+        dependency: []
+      },
+      {
+        type: 'link',
+        label: 'Ingrese aquí para modificar sus datos de facturación.',
+        name: 'link',
+        value: 'https://tv-compra.tiendabelcorp.com:9002/mx/my-account/edit-invoice-request',
+        dependency: []
+      },
+      {
+        type: 'postalcode',
+        label: 'Ingresa tu código postal',
+        inputType: 'text',
+        name: 'line1',
+        validations: [
+          {
+            name: 'required',
+            validator: Validators.required,
+            message: 'Por favor introduzca una dirección'
+          },
+          {
+            name: 'pattern',
+            validator: Validators.pattern('^[a-zA-Z]+$'),
+            message: 'Accept only text'
+          }
+        ]
+      },
+      {
         type: 'button',
         label: 'Elegir una dirección'
       },
