@@ -26,6 +26,9 @@ import {componentMapper} from './componentsmap';
 import {ButtonSubmitComponent} from './components/button-submit/button-submit.component';
 import {ConfirmDialogComponent} from './components/confirm-dialog/confirm-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {LinkComponent} from './components/link/link.component';
+import {PostalCodeComponent} from './components/postal-code/postal-code.component';
+import {ParagraphComponent} from './components/paragraph/paragraph.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     CheckboxComponent,
     DynamicFieldDirective,
     DynamicFormComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    LinkComponent,
+    PostalCodeComponent,
+    ParagraphComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +78,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     DateComponent,
     RadiobuttonComponent,
     CheckboxComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    LinkComponent,
+    PostalCodeComponent,
+    ParagraphComponent
   ]
 })
 export class DynamicFormModule { }

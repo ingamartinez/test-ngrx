@@ -147,7 +147,8 @@ export class FieldService {
         label: 'Solicitar Factura',
         name: 'factura',
         value: false,
-        dependency: []
+        dependency: [],
+        disabled: true
       },
       {
         type: 'link',
@@ -160,7 +161,7 @@ export class FieldService {
         type: 'postalcode',
         label: 'Ingresa tu código postal',
         inputType: 'text',
-        name: 'line1',
+        name: 'postalcode',
         validations: [
           {
             name: 'required',
@@ -172,6 +173,22 @@ export class FieldService {
             validator: Validators.pattern('^[a-zA-Z]+$'),
             message: 'Accept only text'
           }
+        ],
+        extraFields: [
+          {
+            type: 'paragraph',
+            label: '¿No sabes tu código postal?',
+            name: 'link',
+            value: 'https://tv-compra.tiendabelcorp.com:9002/mx/my-account/edit-invoice-request',
+            dependency: []
+          },
+          {
+            type: 'link',
+            label: 'Encuéntralo aquí',
+            name: 'link',
+            value: 'https://micodigopostal.org/',
+            dependency: []
+          },
         ]
       },
       {

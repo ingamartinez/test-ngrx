@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import { FieldConfig, TypeDependency } from '../../models/field.interface';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 @Component({
@@ -17,7 +17,12 @@ export class CheckboxComponent implements OnInit {
   field: FieldConfig;
   group: FormGroup;
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.field.disabled) {
+      const field = this.group.get(this.field.name) as FormControl;
+      field.disable();
+    }
+  }
 
   check(event: MatCheckboxChange): void {
     this.field.dependency.forEach((dependency, indice, array) => {

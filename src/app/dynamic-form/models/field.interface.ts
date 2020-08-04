@@ -11,8 +11,10 @@ export interface FieldConfig {
   collections?: any;
   type: string;
   value?: any;
+  disabled?: boolean;
   validations?: Validator[];
   dependency?: Dependency[];
+  extraFields?: FieldConfig[];
 }
 export interface Dependency {
   type?: TypeDependency;
