@@ -12,6 +12,7 @@ export interface FieldConfig {
   type: string;
   value?: any;
   disabled?: boolean;
+  hidden?: boolean;
   validations?: Validator[];
   dependency?: Dependency[];
   extraFields?: FieldConfig[];

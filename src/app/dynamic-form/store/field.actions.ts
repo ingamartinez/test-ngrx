@@ -7,6 +7,7 @@ import {SelectedField} from '../models/store-fields.interface';
 export const MODIFY_SELECT_FIELD = 'Modify Select Field';
 export const GET_FIELDS = 'Get All Fields';
 export const LOADED_FIELDS = 'Loaded Fields';
+export const POSTAL_CODE_FILLED = 'Postal Code Component Filled';
 
 // 3 - Creación de la clase tipo AddTask
 export class ModifySelectField implements Action {
@@ -24,5 +25,10 @@ export class LoadedFields implements Action {
   constructor(public payload: SelectedField) { }
 }
 
+export class PostalCodeComponentFilled implements Action {
+  readonly type = POSTAL_CODE_FILLED;
+  constructor(public payload: SelectedField) { }
+}
+
 // 4 - Exportación de la acción
-export type Actions = ModifySelectField | GetFields | LoadedFields;
+export type Actions = ModifySelectField | GetFields | LoadedFields | PostalCodeComponentFilled;

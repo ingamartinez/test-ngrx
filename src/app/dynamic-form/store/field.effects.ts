@@ -7,6 +7,7 @@ import * as FieldActions from './field.actions';
 import {Store} from '@ngrx/store';
 import {AppState} from '../models/app.state';
 import {Dependency, FieldConfig, TypeDependency} from '../models/field.interface';
+import {POSTAL_CODE_FILLED} from "./field.actions";
 
 
 @Injectable()
@@ -25,6 +26,17 @@ export class FieldEffects {
   @Effect()
   modifySelectField$ = this.actions$.pipe(
     ofType(FieldActions.MODIFY_SELECT_FIELD),
+    mergeMap((payload) => this.fieldService.cambiarSelect(payload)
+      .pipe(
+        withLatestFrom(this.store.select('fields')),
+        map(([result, fields]) => ({ type: FieldActions.LOADED_FIELDS, payload: this.modifySelect(result, fields, payload) }))
+      )
+    )
+  );
+
+  @Effect()
+  postalCodeComponentFilled$ = this.actions$.pipe(
+    ofType(FieldActions.POSTAL_CODE_FILLED),
     mergeMap((payload) => this.fieldService.cambiarSelect(payload)
       .pipe(
         withLatestFrom(this.store.select('fields')),

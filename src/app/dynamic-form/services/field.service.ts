@@ -148,7 +148,8 @@ export class FieldService {
         name: 'factura',
         value: false,
         dependency: [],
-        disabled: true
+        disabled: true,
+        hidden: true
       },
       {
         type: 'link',
@@ -189,7 +190,45 @@ export class FieldService {
             value: 'https://micodigopostal.org/',
             dependency: []
           },
-        ]
+        ],
+        dependency: [
+          {
+            type: TypeDependency.HideShow,
+            id: 'regionIso',
+            endpoint: ''
+          },
+          {
+            type: TypeDependency.HideShow,
+            id: 'regionIsoParent1',
+            endpoint: ''
+          }
+          ,
+          {
+            type: TypeDependency.HideShow,
+            id: 'regionIsoParent2',
+            endpoint: ''
+          },
+          {
+            type: TypeDependency.HideShow,
+            id: 'line1',
+            endpoint: ''
+          },
+          {
+            type: TypeDependency.HideShow,
+            id: 'line2',
+            endpoint: ''
+          },
+          {
+            type: TypeDependency.HideShow,
+            id: 'referencia',
+            endpoint: ''
+          },
+          {
+            type: TypeDependency.HideShow,
+            id: 'phone',
+            endpoint: ''
+          }
+        ],
       },
       {
         type: 'button',
@@ -214,7 +253,9 @@ export class FieldService {
             validator: Validators.required,
             message: 'Por favor introduzca un departamento'
           }
-        ]
+        ],
+        disabled: true,
+        hidden: true,
       },
       {
         type: 'select',
@@ -235,7 +276,9 @@ export class FieldService {
             validator: Validators.required,
             message: 'Por favor introduzca una provincia'
           }
-        ]
+        ],
+        disabled: true,
+        hidden: true
       },
       {
         type: 'select',
@@ -250,7 +293,9 @@ export class FieldService {
             validator: Validators.required,
             message: 'Por favor introduzca un distrito'
           }
-        ]
+        ],
+        disabled: true,
+        hidden: true
       },
       {
         type: 'input',
@@ -268,7 +313,9 @@ export class FieldService {
             validator: Validators.pattern('^[a-zA-Z]+$'),
             message: 'Accept only text'
           }
-        ]
+        ],
+        disabled: true,
+        hidden: true
       },
       {
         type: 'input',
@@ -283,7 +330,9 @@ export class FieldService {
             ),
             message: 'Invalid email'
           }
-        ]
+        ],
+        disabled: true,
+        hidden: true
       },
       {
         type: 'input',
@@ -298,7 +347,9 @@ export class FieldService {
             ),
             message: 'Invalid email'
           }
-        ]
+        ],
+        disabled: true,
+        hidden: true
       },
       {
         type: 'input',
@@ -313,7 +364,9 @@ export class FieldService {
             ),
             message: 'Invalid email'
           }
-        ]
+        ],
+        disabled: true,
+        hidden: true
       },
       {
         type: 'buttonSubmit',
@@ -323,6 +376,10 @@ export class FieldService {
   }
 
   cambiarSelect(payload): Observable<any> {
+    return of(['Cartagena', 'Barranquilla', 'Medellín']);
+  }
+
+  postalCode(payload): Observable<any> {
     return of(['Cartagena', 'Barranquilla', 'Medellín']);
   }
 }
