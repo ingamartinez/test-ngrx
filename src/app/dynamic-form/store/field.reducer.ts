@@ -1,6 +1,6 @@
 // 1 - Importaciones
 import * as FieldActions from './field.actions';
-import {FieldConfig, TypeDependency} from '../models/field.interface';
+import {Dependency, FieldConfig, TypeDependency} from '../models/field.interface';
 import {Validators} from '@angular/forms';
 import {ModifySelectField} from './field.actions';
 
@@ -8,6 +8,7 @@ import {ModifySelectField} from './field.actions';
 const initialState: FieldConfig[] = [];
 
 // 3 - Switch con las funciones puras
+// tslint:disable-next-line:typedef
 export function fieldReducer(state: FieldConfig[] = initialState, action: FieldActions.Actions) {
   switch (action.type) {
     // case FieldActions.MODIFY_SELECT_FIELD:

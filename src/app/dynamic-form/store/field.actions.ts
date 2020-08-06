@@ -1,6 +1,6 @@
 // 1 - Importaciones
 import { Action } from '@ngrx/store';
-import {FieldConfig} from '../models/field.interface';
+import {Dependency, FieldConfig, TypeDependency} from '../models/field.interface';
 import {SelectedField} from '../models/store-fields.interface';
 
 // 2 - Definición del tipo de acción

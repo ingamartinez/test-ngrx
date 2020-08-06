@@ -27,23 +27,30 @@ import * as FieldActions from '../../store/field.actions';
 export class SelectComponent implements OnInit {
   field: FieldConfig;
   group: FormGroup;
-  constructor(private store: Store<AppState>) {}
-  ngOnInit(): void {}
+  constructor(private store: Store<AppState>) {
+    console.log(this.field, this.group);
+  }
+  ngOnInit(): void {
+    if (this.field.value) {
+      // console.log('aqui');
+      // this.triggerSelection(this.field, this.field.value);
+    }
+  }
 
   selectionChange($event: MatSelectChange): void {
     this.field.dependency.forEach((dependency, indice, array) => {
       if (dependency.type === TypeDependency.LoadService) {
-        this.store.dispatch(
-          new FieldActions.ModifySelectField({
-            field: this.field,
-            value: $event.value
-          })
-        );
+        this.triggerSelection(this.field, $event.value);
       }
     });
   }
 
-  servicioCambiar(data): Observable<any> {
-    return of(['Cartagena', 'Barranquilla', 'Medellín']);
+  triggerSelection(field: FieldConfig, value: string): void{
+    this.store.dispatch(
+      new FieldActions.ModifySelectField({
+        field: this.field,
+        value
+      })
+    );
   }
 }
