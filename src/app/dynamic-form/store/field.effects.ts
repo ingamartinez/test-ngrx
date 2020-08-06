@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
-import { of } from 'rxjs';
-import {map, mergeMap, catchError, withLatestFrom, tap} from 'rxjs/operators';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {mergeMap, withLatestFrom} from 'rxjs/operators';
 import {FieldService} from '../services/field.service';
 import * as FieldActions from './field.actions';
 import {Store} from '@ngrx/store';
 import {AppState} from '../models/app.state';
 import {Dependency, FieldConfig, TypeDependency} from '../models/field.interface';
+import {GetSelectOptionsFromValue, PopulateSelectsFields} from "./field.actions";
+import {SelectService} from "../services/select.service";
 
 
 @Injectable()
@@ -14,22 +15,35 @@ export class FieldEffects {
 
   loadFields$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(FieldActions.GET_FIELDS),
-      mergeMap(() => this.fieldService.getFields()
-        .pipe(
-          map(fields => ({ type: FieldActions.LOADED_FIELDS, payload: fields }))
-        )
-      )
+      ofType(FieldActions.LOAD_FIELDS),
+      mergeMap(() => this.fieldService.getFields()),
+      mergeMap((fields: FieldConfig[]) => [
+        new FieldActions.LoadFieldsSuccess(fields),
+        new FieldActions.PopulateSelectsFields(fields)
+      ])
     )
   );
-  @Effect()
-  modifySelectField$ = this.actions$.pipe(
-    ofType(FieldActions.MODIFY_SELECT_FIELD),
-    mergeMap((payload) => this.fieldService.cambiarSelect(payload)
-      .pipe(
+
+  getSelectOptionsFromValue$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FieldActions.GET_SELECT_OPTIONS_FROM_VALUE),
+      mergeMap((payload: GetSelectOptionsFromValue) => this.fieldService.cambiarSelect(payload).pipe(
         withLatestFrom(this.store.select('fields')),
-        map(([result, fields]) => ({ type: FieldActions.LOADED_FIELDS, payload: this.modifySelect(result, fields, payload) }))
-      )
+        mergeMap(([result, fields]) => [
+          new FieldActions.GetSelectOptionsFromValueSuccess(this.modifySelect(result, fields, payload)),
+        ])
+      ))
+    )
+  );
+
+  populateLoadedFields$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(FieldActions.POPULATE_SELECTS),
+      mergeMap((fieldsConfig: PopulateSelectsFields) => {
+        return [
+          new FieldActions.PopulateSelectsFieldsSuccess(fieldsConfig.payload)
+        ];
+      }),
     )
   );
 
@@ -49,8 +63,13 @@ export class FieldEffects {
     return newFields;
   }
 
+  populateSelectFields(fieldConfig: FieldConfig[]): FieldConfig[] {
+    return fieldConfig;
+  }
+
   constructor(
     private actions$: Actions,
+    private selectService: SelectService,
     private fieldService: FieldService,
     private store: Store<AppState>
   ) {}

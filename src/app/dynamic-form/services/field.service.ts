@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import {forkJoin, Observable, of} from 'rxjs';
 import { Validators } from '@angular/forms';
 import { FieldConfig, TypeDependency } from '../models/field.interface';
-import {map, tap} from "rxjs/operators";
+import {map, tap} from 'rxjs/operators';
+import {SelectService} from "./select.service";
 
 @Injectable({ providedIn: 'root' })
 export class FieldService {
-  constructor() {}
+  constructor(protected selectService: SelectService) {}
 
   getConfigFields(): Observable<FieldConfig[]> {
     return of([
@@ -169,8 +170,7 @@ export class FieldService {
           field.value = fieldsValues[field.name];
         });
         return fieldsConfig;
-      }),
-      tap((fieldConfig) => console.log(fieldConfig))
+      })
     );
   }
 

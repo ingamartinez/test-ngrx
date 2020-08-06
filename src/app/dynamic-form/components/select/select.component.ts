@@ -6,6 +6,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../models/app.state';
 import * as FieldActions from '../../store/field.actions';
+import {SelectService} from "../../services/select.service";
 
 @Component({
   selector: 'app-select',
@@ -27,30 +28,13 @@ import * as FieldActions from '../../store/field.actions';
 export class SelectComponent implements OnInit {
   field: FieldConfig;
   group: FormGroup;
-  constructor(private store: Store<AppState>) {
-    console.log(this.field, this.group);
-  }
-  ngOnInit(): void {
-    if (this.field.value) {
-      // console.log('aqui');
-      // this.triggerSelection(this.field, this.field.value);
-    }
-  }
+  constructor(
+    protected selectService: SelectService,
+    protected store: Store<AppState>
+  ) {}
+  ngOnInit(): void { }
 
   selectionChange($event: MatSelectChange): void {
-    this.field.dependency.forEach((dependency, indice, array) => {
-      if (dependency.type === TypeDependency.LoadService) {
-        this.triggerSelection(this.field, $event.value);
-      }
-    });
-  }
-
-  triggerSelection(field: FieldConfig, value: string): void{
-    this.store.dispatch(
-      new FieldActions.ModifySelectField({
-        field: this.field,
-        value
-      })
-    );
+    this.selectService.selectionChange(this.field, $event.value);
   }
 }

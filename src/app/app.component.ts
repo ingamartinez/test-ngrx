@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new FieldActions.GetFields());
+    this.store.dispatch(new FieldActions.LoadFields());
   }
 
   submit(value: any) {}
