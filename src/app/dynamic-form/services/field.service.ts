@@ -9,10 +9,7 @@ export class FieldService {
 
   getFieldsPeru(): Observable<FieldConfig[]> {
     return of([
-      {
-        type: 'button',
-        label: 'Elegir una dirección'
-      },
+
       {
         type: 'select',
         label: '¿En qué departamento?',
@@ -75,6 +72,7 @@ export class FieldService {
         label: 'Dirección',
         inputType: 'text',
         name: 'line1',
+        maxLength: 59,
         validations: [
           {
             name: 'required',
@@ -83,8 +81,21 @@ export class FieldService {
           },
           {
             name: 'pattern',
-            validator: Validators.pattern('^[a-zA-Z]+$'),
-            message: 'Accept only text'
+            validator: Validators.pattern('[\\/\\-.,#|()a-zA-Z0-9 ]+'),
+            message: '',
+            callback: (text): string => {
+              const regex = /[^\/\-.,#|()a-zA-Z0-9 ]+/gm;
+              let m;
+              let result = '';
+              while ((m = regex.exec(text)) !== null) {
+                if (m.index === regex.lastIndex) {
+                  regex.lastIndex++;
+                }
+                result += m;
+              }
+              const message = `Los siguientes caracteres ingresados no son válidos: (${result}), solo puede ingresar alfanuméricos y los siguientes carácteres especiales /-.,#|()`;
+              return message;
+            }
           }
         ]
       },
@@ -93,14 +104,14 @@ export class FieldService {
         label: 'Depto. / Int. / Piso / Edificio (Opcional)',
         inputType: 'text',
         name: 'line2',
-        maxLength: 10,
+        maxLength: 9,
         validations: [
           {
             name: 'pattern',
             validator: Validators.pattern(
               ''
             ),
-            message: 'Invalid email'
+            message: 'validation message'
           }
         ]
       },
@@ -113,9 +124,9 @@ export class FieldService {
           {
             name: 'pattern',
             validator: Validators.pattern(
-              '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'
+              ''
             ),
-            message: 'Invalid email'
+            message: 'validation message'
           }
         ]
       },
@@ -128,9 +139,9 @@ export class FieldService {
           {
             name: 'pattern',
             validator: Validators.pattern(
-              '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'
+              ''
             ),
-            message: 'Invalid email'
+            message: 'validation message'
           }
         ]
       },
@@ -217,7 +228,7 @@ export class FieldService {
           },
           {
             name: 'pattern',
-            validator: Validators.pattern('^[a-zA-Z]+$'),
+            validator: Validators.pattern('[\\/|\\-|\\.|\\,|\\#|\\||\\(|\\)]*[a-zA-Z]*[0-9]*'),
             message: 'Accept only text'
           }
         ]
