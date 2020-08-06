@@ -2,6 +2,7 @@ export interface Validator {
   name: string;
   validator: any;
   message: string;
+  callback?: any;
 }
 export interface FieldConfig {
   label?: string;
@@ -12,7 +13,6 @@ export interface FieldConfig {
   type: string;
   value?: any;
   maxLength?: number;
-  minLength?: number;
   validations?: Validator[];
   dependency?: Dependency[];
 }

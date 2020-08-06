@@ -5,7 +5,8 @@ import { FieldConfig } from '../../models/field.interface';
   selector: 'app-button',
   template: `
     <div class="demo-full-width margin-top" [formGroup]="group">
-      <button type="submit" mat-raised-button color="primary" [disabled]="!group.valid">
+<!--      <button type="submit" mat-raised-button color="primary" [disabled]="!group.valid">-->
+      <button type="submit" mat-raised-button color="primary">
         {{ field.label }}
       </button>
     </div>
